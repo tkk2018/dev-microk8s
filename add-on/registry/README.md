@@ -4,7 +4,7 @@
 
 The machine information:
 
-```
+```bash
 $ sw_vers
 ProductName:		macOS
 ProductVersion:		14.4
@@ -50,7 +50,7 @@ Thus, it can be accessed through `localhost:32000`.
 > [!IMPORTANT]
 > When using the Multipass + MicroK8s combo, the `microk8s-vm` IP address can be obtained by using the `multipass info`.
 >
-> ```
+> ```bash
 > $ multipass info
 > Name:           microk8s-vm
 > State:          Running
@@ -61,7 +61,9 @@ Thus, it can be accessed through `localhost:32000`.
 >
 > Therefore, it can be accessed through `192.168.64.1:32000` from the host machine.
 
-The `registry` is compliant with the [Distribution API V2](https://distribution.github.io/distribution/spec/api/). For managing the registry's `images`, check the `microk8s ctr images` command.
+The `registry` is compliant with the [Distribution API V2](https://distribution.github.io/distribution/spec/api/). 
+
+__For managing the registry's `images`, check the `microk8s ctr images` command__.
 
 ### Docker and Podman
 
@@ -79,7 +81,7 @@ If using the Multipass + MicroK8s combo and the Docker or Podman is installed in
 
 Get the correct pod's name
 
-```
+```bash
 $ microk8s kubectl get pods -n container-registry
 NAME                        READY   STATUS    RESTARTS      AGE
 registry-xxxxxxxxxx-xxxxx   1/1     Running   3 (29m ago)   17d
@@ -104,19 +106,20 @@ Alternatively, it can be done manually by following the steps below.
 
 Get the deployment details of the `registry`:
 
-```
+```bash
 microk8s kubectl describe deployment registry -n container-registry
 ```
 
 Set the image version:
 
-```
+```bash
 # Set the image version
 # microk8s kubectl set image deployment/<deployment-name> -n <namespace> <container-name>=<image-name>:<tag>
 microk8s kubectl set image deployment/registry -n container-registry registry=registry:2.8.3
 ```
 
 Roll out the container:
-```
+
+```bash
 microk8s kubectl rollout restart deploy registry -n container-registry
 ```
