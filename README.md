@@ -4,6 +4,20 @@
 
 [Official docs](https://microk8s.io/docs/install-macos)
 
+```
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		14.4
+BuildVersion:		23E214
+
+% multipass --version
+multipass   1.14.1+mac
+multipassd  1.14.1+mac
+
+$ microk8s version
+MicroK8s v1.28.15 revision 7407
+```
+
 > [!NOTE]
 > During the `microk8s install`, it may ask to install `multipass`, a microk8s virtual machine management tool required for macOS Yosemite to run microk8s.
 
